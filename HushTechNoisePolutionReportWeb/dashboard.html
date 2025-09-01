@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Community Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(
+            rgba(247, 245, 245, 0.7),
+            rgba(0, 0, 0, 0.6)
+          ),
+          url("test.webp");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+      }
+
+      /* Consistent Navbar */
+      .toolbar {
+        background-color: #3498db;
+        width: calc(100% + 40px);
+        margin: -20px -20px 20px -20px;
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .toolbar a {
+        color: white;
+        text-decoration: none;
+        margin: 0 25px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: color 0.3s;
+      }
+
+      .toolbar a:hover {
+        color: #ecf0f1;
+      }
+
+      .toolbar img {
+        width: 40px;
+        height: auto;
+        margin-right: 15px;
+        position: absolute;
+        left: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #fff;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+      }
+
+      .stats-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .stats-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s;
+        flex-grow: 1;
+        min-width: 250px;
+      }
+
+      .stats-card:hover {
+        transform: scale(1.05);
+      }
+
+      .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #3498db;
+      }
+
+      .card-value {
+        font-size: 36px;
+        font-weight: bold;
+        color: #e74c3c;
+        margin-top: 10px;
+      }
+
+      .filter-section {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .filter-section select,
+      .filter-section button {
+        padding: 10px;
+        font-size: 16px;
+        margin: 5px 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      .discussion-section,
+      .report-section {
+        margin-top: 40px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .section-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #34495e;
+        margin-bottom: 20px;
+      }
+
+      .discussion-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .discussion-item {
+        padding: 10px;
+        background-color: #ecf0f1;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border-left: 4px solid #3498db;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+      }
+
+      .report-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .report-table th,
+      .report-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .report-table th {
+        background-color: #3498db;
+        color: white;
+      }
+
+      .report-table tbody tr:hover {
+        background-color: #f5f5f5;
+      }
+
+      @media screen and (max-width: 768px) {
+        .toolbar img {
+          display: none;
+        }
+        .filter-section {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <img src="president_university_logo.png" alt="Logo" />
+      <a href="index.html">Home</a>
+      <a href="soundleveldetector.html">Sound Level Detector</a>
+      <a href="dashboard.html">Community Dashboard</a>
+    </div>
+
+    <h1>Community Dashboard</h1>
+
+    <div class="stats-container" id="violationStats">
+      <div class="stats-card">
+        <div class="card-title">High Violation Areas</div>
+        <div class="card-value" id="highViolationAreas">--</div>
+      </div>
+      <div class="stats-card">
+        <div class="card-title">Total Reports</div>
+        <div class="card-value" id="reportNumbers">0</div>
+      </div>
+      <div class="stats-card">
+        <div class="card-title">Pending Reports</div>
+        <div class="card-value" id="pendingReports">0</div>
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <label for="locationFilter">Filter by Location:</label>
+      <select id="locationFilter">
+        <option value="all">All Locations</option>
+        <option value="NBH">NBH</option>
+        <option value="SBH">SBH</option>
+        <option value="PU">President University</option>
+      </select>
+      <button id="applyFilters">Apply Filter</button>
+    </div>
+
+    <div class="report-section">
+      <div class="section-title">Submitted Reports</div>
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Report ID</th>
+            <th>Location</th>
+            <th>Issue</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="reportTableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="discussion-section">
+      <div class="section-title">Community Discussions</div>
+      <ul class="discussion-list" id="discussionList"></ul>
+      <textarea
+        id="discussionInput"
+        rows="3"
+        placeholder="Share your thoughts..."
+      ></textarea>
+      <button id="submitDiscussion">Submit Comment</button>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const reports = JSON.parse(localStorage.getItem("allReports")) || [];
+        const comments = JSON.parse(localStorage.getItem("allComments")) || [
+          { user: "Haikal", text: "I think people can be helped by this web." },
+          { user: "Klery", text: "Yes, I agree! This area needs this web." },
+        ];
+
+        const reportTableBody = document.getElementById("reportTableBody");
+        const discussionList = document.getElementById("discussionList");
+        const applyFiltersBtn = document.getElementById("applyFilters");
+        const submitDiscussionBtn = document.getElementById("submitDiscussion");
+
+        // --- FUNCTIONS ---
+
+        const renderReports = (filteredReports) => {
+          reportTableBody.innerHTML = ""; // Clear existing table
+          if (filteredReports.length === 0) {
+            reportTableBody.innerHTML = `<tr><td colspan="5" style="text-align:center;">No reports found.</td></tr>`;
+          } else {
+            filteredReports.forEach((report) => {
+              const date = new Date(report.datetime);
+              const formattedDate = date.toLocaleString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+              });
+              const row = `
+                            <tr data-location="${report.location.toUpperCase()}">
+                                <td>${report.id}</td>
+                                <td>${report.location}</td>
+                                <td>${report.issue}</td>
+                                <td>${report.status}</td>
+                                <td>${formattedDate}</td>
+                            </tr>
+                        `;
+              reportTableBody.innerHTML += row;
+            });
+          }
+        };
+
+        const updateStats = (currentReports) => {
+          document.getElementById("reportNumbers").textContent =
+            currentReports.length;
+
+          const pendingCount = currentReports.filter(
+            (r) => r.status === "Pending"
+          ).length;
+          document.getElementById("pendingReports").textContent = pendingCount;
+
+          const locationCounts = currentReports.reduce((acc, report) => {
+            const loc = report.location.toUpperCase();
+            acc[loc] = (acc[loc] || 0) + 1;
+            return acc;
+          }, {});
+
+          const highViolationArea = Object.keys(locationCounts).reduce(
+            (a, b) => (locationCounts[a] > locationCounts[b] ? a : b),
+            "N/A"
+          );
+          document.getElementById("highViolationAreas").textContent =
+            highViolationArea;
+        };
+
+        const renderComments = () => {
+          discussionList.innerHTML = "";
+          comments.forEach((comment) => {
+            const item = `<li class="discussion-item"><strong>${comment.user}:</strong> ${comment.text}</li>`;
+            discussionList.innerHTML += item;
+          });
+        };
+
+        // --- EVENT LISTENERS ---
+
+        applyFiltersBtn.addEventListener("click", () => {
+          const locationFilter = document
+            .getElementById("locationFilter")
+            .value.toUpperCase();
+          if (locationFilter === "ALL") {
+            renderReports(reports);
+          } else {
+            const filtered = reports.filter(
+              (r) => r.location.toUpperCase() === locationFilter
+            );
+            renderReports(filtered);
+          }
+        });
+
+        submitDiscussionBtn.addEventListener("click", () => {
+          const input = document.getElementById("discussionInput");
+          const text = input.value.trim();
+          if (text) {
+            comments.push({ user: "Community Member", text: text });
+            localStorage.setItem("allComments", JSON.stringify(comments));
+            renderComments();
+            input.value = "";
+          }
+        });
+
+        // --- INITIAL LOAD ---
+        renderReports(reports);
+        updateStats(reports);
+        renderComments();
+      });
+    </script>
+  </body>
+</html>
