@@ -1,0 +1,365 @@
+/* 
+ * Duck N Wash Table Styles 
+ * Modern, responsive tables with car wash theme
+ */
+
+/* Base Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8fafc;
+}
+
+p.credits {
+  font-size: 0.8125rem;
+  margin-top: 6em;
+  color: #6b7280;
+}
+
+/* Code Blocks */
+code {
+  background: #f0f9ff;
+  border-radius: 8px;
+  color: #0369a1;
+  display: block;
+  margin: 2em 0;
+  padding: 15px;
+  position: relative;
+  border-left: 4px solid #0ea5e9;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.w3agile-css {
+  margin-bottom: 0 !important;
+}
+
+code:after {
+  bottom: 5px;
+  color: #bae6fd;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.75rem;
+  position: absolute;
+  right: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+code.css:after {
+  content: 'css';
+}
+
+code.js:after {
+  content: 'js';
+}
+
+/* Bubble Background Elements */
+.bubble-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  background-color: rgba(0, 180, 216, 0.1);
+  border-radius: 50%;
+  animation: float-up 15s infinite ease-in;
+  z-index: 0;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100px) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Tables - Duck N Wash Theme */
+table {
+  background: white;
+  border-collapse: collapse;
+  margin: 1.25em 0 0;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+table::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00B4D8, #0096C7, #0077B6);
+}
+
+table tr,
+table th,
+table td {
+  border: none;
+  border-bottom: 1px solid #e8f4fc;
+  font-size: 0.95em;
+  transition: all 0.2s ease;
+}
+
+table th,
+table td {
+  padding: 14px 16px;
+  text-align: left;
+}
+
+table th {
+  background: linear-gradient(135deg, #00B4D8, #0096C7);
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+table th::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+table tr td {
+  background: #f8fbfe;
+  color: #334155;
+}
+
+table tr:hover td {
+  background: #f0f9ff;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 180, 216, 0.1);
+}
+
+table tr:nth-of-type(2n+2) td {
+  background: #ffffff;
+}
+
+/* Responsive Tables */
+@media only screen and (max-width: 768px) {
+  .phone-block {
+    display: block;
+  }
+
+  .phone-hide {
+    display: none;
+  }
+
+  /* Example 4: Media query over js resize */
+  #table-no-resize thead {
+    display: none;
+  }
+
+  #table-no-resize tbody td {
+    border: none !important;
+    display: block;
+    font-size: 0.8125rem;
+    padding: 0;
+    vertical-align: top;
+    float: left;
+    width: 100%;
+  }
+
+  #table-no-resize tbody td:before {
+    background: #00B4D8;
+    content: attr(data-th) ": ";
+    color: white;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 10px;
+    padding: 6px 12px;
+    width: 6.5em;
+    border-radius: 4px;
+  }
+
+  #table-no-resize tbody td .bt-content {
+    display: inline-block;
+    padding: 8px 5px;
+  }
+
+  #table-no-resize tbody td:first-of-type:before,
+  #table-no-resize tbody td:first-of-type .bt-content {
+    padding-top: 12px;
+  }
+
+  #table-no-resize tbody td:last-of-type:before,
+  #table-no-resize tbody td:last-of-type .bt-content {
+    padding-bottom: 12px;
+  }
+}
+
+/* Two Axis Styling */
+table.two-axis tr td:first-of-type {
+  background: #e7f6fd;
+  font-weight: 600;
+  color: #0077B6;
+}
+
+@media only screen and (max-width: 768px) {
+  table.two-axis tr td:first-of-type,
+  table.two-axis tr:nth-of-type(2n+2) td:first-of-type,
+  table.two-axis tr td:first-of-type:before {
+    background: #00B4D8;
+    color: white;
+  }
+
+  table.two-axis tr td:first-of-type {
+    border-bottom: 1px solid #cfe8f8;
+  }
+
+  table.two-axis tr td:first-of-type:before {
+    padding-bottom: 12px;
+  }
+}
+
+/* Max Height Wrapper */
+.bt-wrapper.active {
+  margin-top: 1.5em;
+}
+.bt-wrapper.active table {
+  margin: 0;
+}
+
+/* Enhanced Table Styles */
+.table {
+  margin: 30px 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  border: 1px solid #e0f2fe;
+  box-shadow: 0 4px 20px rgba(0, 180, 216, 0.1);
+}
+
+.table caption {
+  color: #0369a1;
+  font-size: 1rem;
+  line-height: 1.4;
+  padding: 1em 0;
+  text-align: center;
+  font-weight: 600;
+}
+
+.table td,
+.table th {
+  border-left: 1px solid #e0f2fe;
+  border-width: 0 0 0 1px;
+  font-size: 0.95em;
+  margin: 0;
+  overflow: visible;
+  padding: 0.75em 1.25em;
+}
+
+.table td:first-child,
+.table th:first-child {
+  border-left-width: 0;
+}
+
+.table thead,
+.table tfoot {
+  background: linear-gradient(135deg, #00B4D8, #0096C7);
+  color: white;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table thead td,
+.table tfoot td,
+.table thead th,
+.table tfoot th {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.table td {
+  background-color: transparent;
+}
+
+.table_striped tr:nth-child(2n-1) td {
+  background-color: #f8fafc;
+}
+
+.table_bordered td {
+  border-bottom: 1px solid #e0f2fe;
+}
+
+.table_bordered tbody > tr:last-child > td,
+.table_bordered thead > tr:last-child > td {
+  border-bottom-width: 0;
+}
+
+.table_horizontal td,
+.table_horizontal th {
+  border-width: 0 0 1px 0;
+  border-bottom: 1px solid #e0f2fe;
+}
+
+.table_horizontal tbody > tr:last-child > td,
+.table_horizontal thead > tr:last-child > td {
+  border-bottom-width: 0;
+}
+
+/* Duck N Wash Brand Elements */
+.ducknwash-brand {
+  position: relative;
+}
+
+.ducknwash-brand::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="5" fill="%2300B4D8" opacity="0.2"/><circle cx="50" cy="30" r="7" fill="%2300B4D8" opacity="0.2"/><circle cx="80" cy="20" r="4" fill="%2300B4D8" opacity="0.2"/><circle cx="30" cy="60" r="6" fill="%2300B4D8" opacity="0.2"/><circle cx="70" cy="70" r="5" fill="%2300B4D8" opacity="0.2"/></svg>');
+  background-repeat: repeat;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+/* Bubble Animation for Tables */
+@keyframes bubble-float {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  50% { transform: translateY(-10px) scale(1.05); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 0.8; }
+}
+
+.table-hover-bubble tr:hover {
+  animation: bubble-float 0.6s ease;
+}
+
+/* Water Droplet Icons */
+.water-drop::before {
+  content: '💧';
+  margin-right: 8px;
+}
+
+.car-icon::before {
+  content: '🚗';
+  margin-right: 8px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 568px) {
+  .table td, 
+  .table th {
+    padding: 0.5em 0.75em;
+    font-size: 0.85em;
+  }
+  
+  .table caption {
+    font-size: 0.9em;
+  }
+}
